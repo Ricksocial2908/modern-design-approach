@@ -24,7 +24,7 @@ const Hero = () => {
       {/* Content */}
       <div className="container-custom relative z-10 text-center">
         <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-          Chartered Certified Accountants <br />& Registered Auditors
+          Professional Accounting <br />& Financial Services
         </h1>
         <p className="text-white text-lg md:text-xl mb-8 max-w-3xl mx-auto">
           Providing expert tax, audit and accounting services to businesses and individuals across Ireland since 1989.
