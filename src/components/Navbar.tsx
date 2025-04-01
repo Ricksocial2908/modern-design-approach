@@ -1,13 +1,10 @@
-
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 20) {
@@ -16,21 +13,17 @@ const Navbar = () => {
         setIsScrolled(false);
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
-  return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
+  return <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
       <div className="container-custom flex justify-between items-center">
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
-            <span className="text-navy text-2xl font-bold">Alan Keane & Co.</span>
+            <span className="text-2xl font-bold text-slate-50">Alan Keane & Co.</span>
           </Link>
         </div>
 
@@ -47,18 +40,14 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
-          <button 
-            onClick={toggleMenu}
-            className="text-navy hover:text-navy-light focus:outline-none"
-          >
+          <button onClick={toggleMenu} className="text-navy hover:text-navy-light focus:outline-none">
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-white absolute w-full shadow-lg animate-fade-in">
+      {isOpen && <div className="md:hidden bg-white absolute w-full shadow-lg animate-fade-in">
           <div className="container-custom py-4 flex flex-col space-y-4">
             <MobileNavLink href="#about" onClick={toggleMenu}>About</MobileNavLink>
             <MobileNavLink href="#services" onClick={toggleMenu}>Services</MobileNavLink>
@@ -68,29 +57,27 @@ const Navbar = () => {
               Get in Touch
             </Button>
           </div>
-        </div>
-      )}
-    </nav>
-  );
+        </div>}
+    </nav>;
 };
-
-const NavLink = ({ href, children }: { href: string, children: React.ReactNode }) => (
-  <a
-    href={href}
-    className="text-navy hover:text-navy-light font-medium transition-colors duration-200"
-  >
+const NavLink = ({
+  href,
+  children
+}: {
+  href: string;
+  children: React.ReactNode;
+}) => <a href={href} className="text-navy hover:text-navy-light font-medium transition-colors duration-200">
     {children}
-  </a>
-);
-
-const MobileNavLink = ({ href, onClick, children }: { href: string, onClick: () => void, children: React.ReactNode }) => (
-  <a
-    href={href}
-    onClick={onClick}
-    className="text-navy hover:text-navy-light font-medium py-2 block transition-colors duration-200"
-  >
+  </a>;
+const MobileNavLink = ({
+  href,
+  onClick,
+  children
+}: {
+  href: string;
+  onClick: () => void;
+  children: React.ReactNode;
+}) => <a href={href} onClick={onClick} className="text-navy hover:text-navy-light font-medium py-2 block transition-colors duration-200">
     {children}
-  </a>
-);
-
+  </a>;
 export default Navbar;
